@@ -11,16 +11,19 @@ import UIKit
 class ViewController: UIViewController {
 
     var sideVC: SideMenuVC?
+    let width = UIScreen.main.bounds.size.width
     let finalWidth = UIScreen.main.bounds.size.width * 0.8
     let finalHeight = UIScreen.main.bounds.size.height
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpMenu()
         AppDelegate.isEnglish = true
-        }
+        setUpMenu()
 
+    }
+    
     func setUpMenu(){
         sideVC = storyboard?.instantiateViewController(withIdentifier: "sideMenuVC") as? SideMenuVC
 
@@ -39,7 +42,6 @@ class ViewController: UIViewController {
         }
     }
         @IBAction func didTabMenu(_ sender: Any) {
-            print("Custom bar button item tapped.")
             if AppDelegate.menu_bool{
                 show_menu()
             } else{
@@ -65,7 +67,7 @@ class ViewController: UIViewController {
             if (AppDelegate.isEnglish){
                 self.sideVC?.view.frame = CGRect(x: 0, y: 0, width: self.finalWidth, height: self.finalHeight)
             }else{
-                self.sideVC?.view.frame = CGRect(x: 80, y:0, width: UIScreen.main.bounds.size.width * 0.8, height: self.finalHeight)
+                self.sideVC?.view.frame = CGRect(x: self.width - self.finalWidth, y:0, width: UIScreen.main.bounds.size.width * 0.8, height: self.finalHeight)
             }
             
             //self.sideVC?.view.backgroundColor = UIColor.white.withAlphaComponent(0.6)
